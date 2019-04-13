@@ -31,13 +31,13 @@ __Travailler dans le projet fourni mailreader-ex1-ini__
 
 Raccourcis clavier à connaître : 
 * ALT-SHIFT-S : fonctions Eclipse de génération de sources (ex : constructeurs)
-Génération d'un constructeur
+*	Génération d'un constructeur
 * ALT-SHIFT-T : fonctions de réusinage
-Génération d'une super classe
+*	Génération d'une super classe
 * ALT-SHIFT-M : extraction de méthode (sur sélection)
-Extraction d'une méthode de comparaison en un booléen
+*	Extraction d'une méthode de comparaison en un booléen
 * ALT-SHIFT-R : renommage (sur sélection)
-Renommage de la méthode crée en compare1et2
+*   Renommage de la méthode crée en compare1et2
 
 # Exercice 2 - Découpage en couches
 _Temps estimé : 20 mins_
