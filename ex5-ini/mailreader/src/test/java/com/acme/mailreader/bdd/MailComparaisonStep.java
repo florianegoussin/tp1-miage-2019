@@ -12,6 +12,10 @@ import com.acme.mailreader.domain.MailComparator;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import static org.junit.Assert.*;
+
+import java.time.Instant;
+
 
 /**
  * Les steps (actions) du test
@@ -39,26 +43,27 @@ public class MailComparaisonStep {
 	@Given("^un premier mail avec l'importance \"([^\"]*)\", le statut \"([^\"]*)\", le sujet \"([^\"]*)\" et la date \"([^\"]*)\"$")
 	public void un_premier_mail(boolean importance, Statut statut,
 			String sujet, String date) throws DateIncorrecteException {
-		//TODO
+		this.mail1 = new Mail.Builder(sujet).important(importance).statut(statut).date(Instant.parse(date)).build();
 	}
 
 	@Given("^un second mail avec l'importance \"([^\"]*)\", le statut \"([^\"]*)\", le sujet \"([^\"]*)\" et la date \"([^\"]*)\"$")
 	public void un_second_mail(boolean importance, Statut statut, String sujet,
 			String date) throws DateIncorrecteException {
-		//TODO
+		this.mail2 = new Mail.Builder(sujet).important(importance).statut(statut).date(Instant.parse(date)).build();
 	}
 
 	
 
 	@When("^je trie$")
 	public void je_trie() throws Throwable {
-		//TODO
+		this.resultatComparaison = resuAsString.get(this.comparator.compare(mail1, mail2)):
 	}
 
 	@Then("^le tri doit retourner \"([^\"]*)\"$")
 	public void le_tri_doit_retourner(String resu) throws Throwable {
-		//TODO
-		//assertThat(...);
+		
+		assertEquals(resu, resultatComparaison);
+		
 	}
 	
 

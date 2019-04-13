@@ -1,7 +1,7 @@
 # Nom des étudiants de ce binôme 
-(les DEUX noms) : XXXXX et XXXXXX
+Sarah ARKAM et Floriane GOUSSIN
 
-Commentaires éventuels des étudiants : XXXXXX
+Commentaires éventuels des étudiants : Commentaire sur l'exercice 1
 
 # Pré-requis 
 * Disposer d'au moins un compte github par binome
@@ -31,9 +31,13 @@ __Travailler dans le projet fourni mailreader-ex1-ini__
 
 Raccourcis clavier à connaître : 
 * ALT-SHIFT-S : fonctions Eclipse de génération de sources (ex : constructeurs)
+Génération d'un constructeur
 * ALT-SHIFT-T : fonctions de réusinage
+Génération d'une super classe
 * ALT-SHIFT-M : extraction de méthode (sur sélection)
+Extraction d'une méthode de comparaison en un booléen
 * ALT-SHIFT-R : renommage (sur sélection)
+Renommage de la méthode crée en compare1et2
 
 # Exercice 2 - Découpage en couches
 _Temps estimé : 20 mins_

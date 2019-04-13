@@ -3,9 +3,7 @@ package com.acme.mailreader.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.acme.mailreader.domain.Mail;
-import com.acme.mailreader.presentation.MailInvalideException;
-import com.acme.mailreader.presentation.MailInvalideException.ErreurMail;
+import com.acme.mailreader.model.Mail;
 import com.google.inject.Inject;
 
 public class MailService {
@@ -30,9 +28,9 @@ public class MailService {
 	 *            mail à envoyer
 	 * @throws MailInvalideException si le mail n'est pas valide
 	 * */
-	public void envoyerMail(Mail mail) throws MailInvalideException {
+	public void envoyerMail(Mail mail) {
 		if (mail.getSujet().length() > TAILLE_MAX_SUJET){
-			throw new MailInvalideException(ErreurMail.SUJET_TROP_LONG);
+			//TODO
 		}
 		//...
 		sender.envoyerMail(mail);

@@ -17,11 +17,14 @@ Then le tri doit retourner "<resu>"
 # Les resulats peuvent être : MAIL1_AVANT, MAIL1_APRES, EGAUX
 	
 Examples:
-| important1 | important2 | statut1    | statut2 | sujet1  		    | sujet2        | date1                | date2                | resu        |
-| true       | false	  | PAS_ENVOYE | LU      | aaaaa			| bbbbbb 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:34Z | MAIL1_AVANT |  
-| true       | true	      | PAS_ENVOYE | LU      | aaaaa			| bbbbbb 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:34Z | MAIL1_APRES |
-| true       | true	      | LU		   | LU      | aaaaa			| aaaaa 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:34Z | MAIL1_APRES | 
-    
+| important1  | important2    | statut1    | statut2    | sujet1        | sujet2        | date1                | date2                | resu        |
+| true        | false	      | PAS_ENVOYE | LU         | aaaaa			| bbbbbb 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:34Z | MAIL1_AVANT |  
+| false       | true	      | LU		   | PAS_ENVOYE | aaaaa			| aaaaa 		| 2017-01-01T14:03:34Z | 2017-01-01T14:03:34Z | MAIL1_AVANT | 
+| true        | true	      | PAS_ENVOYE | LU         | aaaaa			| bbbbbb 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:34Z | MAIL1_APRES |
+| true        | true	      | LU		   | LU         | aaaaa			| aaaaa 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:34Z | MAIL1_APRES | 
+| true        | true	      | LU		   | LU         | aaaaa			| aaaaa 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:00Z | EGAUX | 
+| false       | false	      | PAS_ENVOYE | PAS_ENVOYE | aaaaa			| aaaaa 		| 2017-01-01T14:03:00Z | 2017-01-01T14:03:00Z | EGAUX | 
+               
     
 Scenario: ordre d'une liste de mails
 Given les mails :
@@ -29,12 +32,35 @@ Given les mails :
 | true       | PAS_ENVOYE 		 | aaaaa					| 2017-01-01T14:03:00Z |
 | false      | PAS_ENVOYE 		 | aaaaa					| 2017-01-01T14:03:00Z |
 | false      | LU		 		 | bbbbb					| 2016-12-01T14:03:00Z |
+| true       | LU		 		 | ccccc					| 2016-12-01T14:03:00Z |
+| true       | ENVOYE	 		 | ddddd					| 2016-12-01T14:03:00Z |
+
 
 When je trie
 Then la liste ordonnée doit être :
 | important  | statut   		 | sujet			  		| date                 |
+| true       | LU		         | ccccc					| 2016-12-01T14:03:00Z |
+| true       | ENVOYE	 		 | ddddd					| 2016-12-01T14:03:00Z |
 | true       | PAS_ENVOYE 		 | aaaaa					| 2017-01-01T14:03:00Z |
-| false      | LU		 		 | bbbbb					| 2016-12-01T14:03:00Z | 
+| false      | LU	     	 	 | bbbbb					| 2016-12-01T14:03:00Z | 
 | false      | PAS_ENVOYE 		 | aaaaa					| 2017-01-01T14:03:00Z |
+
+Scenario: ordre d'une liste de mails dont le dernier mail doit passer en premier une fois l'ordonnancement fait
+Given les mails :
+| important   | statut   		 | sujet			  		| date                 | 
+| false       | PAS_ENVOYE 		 | aaaaa					| 2017-01-01T14:03:00Z |
+| false       | PAS_ENVOYE 		 | bbbbb					| 2017-01-01T15:03:00Z |
+| false       | PAS_ENVOYE 		 | ccccc					| 2017-01-01T16:03:00Z |
+| false       | PAS_ENVOYE 		 | ddddd					| 2017-01-01T20:03:00Z |
+| true        | PAS_ENVOYE 		 | eeeee					| 2017-01-01T14:03:00Z |
+
+When je trie
+Then la liste ordonnée doit être :
+| important   | statut   		 | sujet			  		| date                 |
+| true        | PAS_ENVOYE 		 | eeeee					| 2017-01-01T20:03:00Z |
+| false       | PAS_ENVOYE 		 | aaaaa					| 2017-01-01T14:03:00Z |
+| false       | PAS_ENVOYE 		 | bbbbb					| 2017-01-01T15:03:00Z |
+| false       | PAS_ENVOYE 		 | ccccc					| 2017-01-01T16:03:00Z |
+| false       | PAS_ENVOYE 		 | ddddd					| 2017-01-01T16:03:00Z |
 
 
